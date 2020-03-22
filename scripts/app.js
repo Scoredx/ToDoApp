@@ -1,32 +1,27 @@
-<button onclick="one()">1</button>
-<button onclick="two()">2</button>
-<button onclick="four()">4</button>
-
-<script>
-// Get the elements with class="column"
-var elements = document.getElementsByClassName("column");
-
-// Declare a "loop" variable
-var i;
-
-// Full-width images
-function one() {
-  for (i = 0; i < elements.length; i++) {
-    elements[i].style.flex = "100%";
-  }
+const TodoContainer = document.querySelectorAll('.todo_item_container')[0];
+const TodoAdd = document.querySelectorAll('.todo_plus')[0];
+ 
+TodoAdd.addEventListener('click', () => {
+  TodoContainer.appendChild(genTodoItem());
+});
+ 
+function genTodoItem() {
+  let cont = document.createElement("div");
+  cont.className = "todo_item";
+  let text = document.createElement("span");
+  text.className = "todo_item_text";
+  text.textContent = "Don't forget about ...";
+  let controls = document.createElement('span');
+  controls.className = 'todo_controls';
+  let edit = document.createElement('img');
+  edit.src = '../images/changes.svg';
+  edit.onclick = () => (text.textContent = prompt('Write what you need...', text.textContent));
+  let remove = document.createElement('img');
+  remove.src = '../images/minus.svg';
+  remove.onclick = () => TodoContainer.removeChild(cont);
+  controls.appendChild(edit);
+  controls.appendChild(remove);
+  cont.appendChild(text);
+  cont.appendChild(controls);
+  return cont;
 }
-
-// Two images side by side
-function two() {
-  for (i = 0; i < elements.length; i++) {
-    elements[i].style.flex = "50%";
-  }
-}
-
-// Four images side by side
-function four() {
-  for (i = 0; i < elements.length; i++) {
-    elements[i].style.flex = "25%";
-  }
-}
-</script>
