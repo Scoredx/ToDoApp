@@ -11,8 +11,8 @@ TodoAdd.addEventListener('click', () => {
 function genTodoItem() {
 
 	//Container + Text
-	let cont = document.createElement("div");
-	cont.className = "todo_item";
+	let element = document.createElement("div");
+	element.className = "todo_item";
 	let text = document.createElement("span");
 	text.className = "todo_item_text";
 	var input = window.prompt("Enter text: ");
@@ -26,10 +26,10 @@ function genTodoItem() {
 	edit.onclick = () => (text.textContent = prompt('Edit: ', text.textContent));
 	let remove = document.createElement('img');
 	remove.src ="./assets/icons/check.svg";
-	remove.onclick = () => TodoContainer.removeChild(cont);
+	remove.onclick = () => TodoContainer.removeChild(element);
 	controls.appendChild(edit);
 	controls.appendChild(remove);
-	cont.appendChild(text);
-	cont.appendChild(controls);
-	return cont;
+	element.appendChild(text);
+	element.appendChild(controls);
+	return element;
 }
